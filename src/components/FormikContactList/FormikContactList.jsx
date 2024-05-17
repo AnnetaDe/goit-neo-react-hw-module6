@@ -18,7 +18,6 @@ export const FormikContactList = () => {
 
   return (
     <div>
-      <h1>List</h1>
       <ul className={s.contactsFormik}>
         {filteredContacts.map(contact => (
           <FormikContact li key={contact.id} {...contact} />
