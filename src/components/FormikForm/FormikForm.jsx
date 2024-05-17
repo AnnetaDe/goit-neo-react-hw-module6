@@ -1,47 +1,55 @@
 import s from './FormikForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { formValidation } from './formValidation';
-export const FormikContactForm = ({ onSubmit }) => {
-  const initialValues = { name: '', number: '' };
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../reduxStore/contactsSlice';
+
+export const FormikContactForm = () => {
+  const dispatch = useDispatch();
+  const initialValues = {
+    name: '',
+    number: '',
+  };
+
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values));
+    console.log(values);
+    actions.resetForm();
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={formValidation}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
-      {props => (
-        <Form className={s.formikForm} onSubmit={props.handleSubmit}>
-          <label htmlFor="name">
-            <span className={s.labelSpan}>New Contact Name </span>
-            <Field
-              className={s.input}
-              type="text"
-              value={props.values.name}
-              onChange={props.handleChange}
-              placeholder="Enter contact name"
-              name="name"
-              id="name"
-            />
-            <ErrorMessage name="name" component="span" className={s.error} />
-          </label>
-          <label>
-            <span className={s.labelSpan}>New Contact Number </span>
-            <Field
-              className={s.input}
-              id="number"
-              type="text"
-              value={props.values.number}
-              onChange={props.handleChange}
-              placeholder="Enter cell number"
-              name="number"
-            />
-            <ErrorMessage className={s.error} name="number" component="span" />
-          </label>
-          <button className={s.formikButton} type="submit">
-            ADD Contact
-          </button>
-        </Form>
-      )}
+      <Form className={s.formikForm}>
+        <label htmlFor="name">
+          <span className={s.labelSpan}>New Contact Name </span>
+          <Field
+            id="name"
+            className={s.input}
+            type="text"
+            placeholder="Enter contact name"
+            name="name"
+          />
+          <ErrorMessage name="name" component="span" className={s.error} />
+        </label>
+        <label htmlFor="number">
+          <span className={s.labelSpan}>New Contact Number </span>
+          <Field
+            id="number"
+            className={s.input}
+            type="text"
+            placeholder="Enter cell number"
+            name="number"
+          />
+          <ErrorMessage className={s.error} name="number" component="span" />
+        </label>
+        <button className={s.formikButton} type="submit">
+          ADD Contact
+        </button>
+      </Form>
     </Formik>
   );
 };

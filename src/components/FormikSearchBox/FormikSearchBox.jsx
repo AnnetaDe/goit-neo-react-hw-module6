@@ -1,18 +1,22 @@
 import s from './FormikSearchBox.module.css';
-import { nanoid } from 'nanoid';
 import { Formik } from 'formik';
-export const FormikSearchBox = ({ value, onSearch }) => {
-  const labelId = nanoid();
+import { useDispatch, useSelector } from 'react-redux';
+import { changeFilter, selectNameFilter } from '../../reduxStore/filtersSlice';
+
+export const FormikSearchBox = () => {
+  const dispatch = useDispatch();
+  const value = useSelector(selectNameFilter);
+
   return (
     <Formik>
       <div className={s.searchBox}>
-        <label htmlFor={labelId}>
+        <label htmlFor="search">
           <span>Search contact by name</span>
           <input
-            id={labelId}
+            id="search"
             type="text"
-            value={value}
-            onChange={e => onSearch(e.target.value)}
+            defaultValue={value}
+            onChange={e => dispatch(changeFilter(e.target.value))}
           />
         </label>
       </div>
