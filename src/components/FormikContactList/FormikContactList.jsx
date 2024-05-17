@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import s from './FormikContactList.module.css';
-import { selectNameFilter } from '../../reduxStore/filtersSlice';
+import { selectNameFilter } from '../../redux/filtersSlice';
 
 import { FormikContact } from '../FormikContact/FormikContact';
-import { selectContacts } from '../../reduxStore/contactsSlice';
+import { selectContacts } from '../../redux/contactsSlice';
 
 export const FormikContactList = () => {
   const contacts = useSelector(selectContacts);

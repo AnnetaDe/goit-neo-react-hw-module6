@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import s from './FormikContact.module.css';
-import { deleteContact } from '../../reduxStore/contactsSlice';
+import { deleteContact } from '../../redux/contactsSlice';
 
 export const FormikContact = ({ id, name, number }) => {
   const dispatch = useDispatch();
