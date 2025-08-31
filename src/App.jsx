@@ -1,17 +1,18 @@
 import './App.css';
-import { FormikContactForm } from './components/FormikForm/FormikForm';
-import { FormikSearchBox } from './components/FormikSearchBox/FormikSearchBox';
-import { FormikContactList } from './components/FormikContactList/FormikContactList';
-import { formValidation } from './components/FormikForm/formValidation';
+import { ContactForm } from './components/ContactForm/ContactForm';
+import { formValidation } from './components/ContactForm/formValidation';
+import { ContactList } from './components/ContactList/ContactList';
+
+import { SearchBox } from './components/SearchBox/SearchBox';
 function App() {
   return (
     <div>
       <h1>Phonebook</h1>
 
       <div>
-        <FormikContactForm formValidation={formValidation} />
-        <FormikSearchBox />
-        <FormikContactList />
+        <ContactForm formValidation={formValidation} />
+        <SearchBox />
+        <ContactList />
       </div>
     </div>
   );
